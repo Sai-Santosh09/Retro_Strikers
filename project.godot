@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 
 KeyUtil="*uid://c2s18ritell0o"
+DataLoader="*uid://bpcxng27wsieg"
 
 [debug]
 

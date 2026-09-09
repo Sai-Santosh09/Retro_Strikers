@@ -18,6 +18,6 @@ func on_ball_entered( contact_ball : Ball ) -> void:
 		contact_ball.shoot( player.velocity.normalized() * player.power * BONUS_POWER )
 
 
-func _process(delta: float) -> void:
+func _process( _delta: float ) -> void:
 	if player.height == 0:
 		transition_state( Player.State.RECOVERING )
