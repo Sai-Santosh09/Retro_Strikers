@@ -48,7 +48,7 @@ script = ExtResource("5_e3hyu")
 ball = NodePath("Ball")
 goal_left = NodePath("PitchObjects/GoalLeft")
 goal_right = NodePath("PitchObjects/GoalRight")
-team_left = "FRANCE"
+team_left = "SPAIN"
 team_right = "GERMANY"
 
 [node name="Spawns" type="Node2D" parent="Container" unique_id=279032620]
