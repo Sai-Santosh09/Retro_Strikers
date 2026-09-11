@@ -8,6 +8,7 @@ const CONTROL_SCHEME_MAP : Dictionary = {
 }
 const COUNTRIES := [ "DEFAULT", "FRANCE", "ARGENTINA", "BRAZIL", "ENGLAND", "GERMANY", "ITALY", "SPAIN", "USA" ]
 const GRAVITY := 8.0
+const WALK_ANIM_THRESHOLD := 0.6
 
 enum ControlScheme {CPU, P1, P2}
 enum Role {GOALIE, DEFENCE, MIDFIELD, OFFENSE}
@@ -90,11 +91,13 @@ func switch_states( state : State, state_data : PlayerStateData = PlayerStateDat
 
 
 func set_movement_animation() -> void:
-	if velocity.length() > 0:
-		animation_player.play("run")
+	var vel_length := velocity.length()
+	if vel_length < 1:
+		animation_player.play( "idle" )
+	elif vel_length < speed * WALK_ANIM_THRESHOLD:
+		animation_player.play( "walk" )
 	else:
-		animation_player.play("idle")
-	pass
+		animation_player.play( "run" )
 
 
 func process_gravity( delta : float ) -> void:
