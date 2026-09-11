@@ -152,3 +152,8 @@ func set_shader_properties() -> void:
 	country_color = clampi( country_color, 0, COUNTRIES.size() - 1 )
 	player_sprite.material.set_shader_parameter( "team_color", country_color )
 	pass
+
+
+func is_facing_target_goal() -> bool:
+	var direction_to_target_goal := position.direction_to( target_goal.position )
+	return Left_or_Right.dot( direction_to_target_goal ) > 0

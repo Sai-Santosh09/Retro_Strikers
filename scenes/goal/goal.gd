@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func on_ball_enter_back_net(ball : Ball) -> void:
 	ball.stop()
-	
 
 
 func get_random_target_position() -> Vector2:
@@ -19,3 +18,7 @@ func get_random_target_position() -> Vector2:
 	if children.is_empty():
 		return global_position
 	return children.pick_random().global_position
+
+
+func get_center_target_position() -> Vector2:
+	return targets.get_child( int( targets.get_child_count() / 2.0 ) ).global_position
