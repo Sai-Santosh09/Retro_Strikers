@@ -26,10 +26,17 @@ func process_ai() -> void:
 
 
 func perform_ai_movement() -> void:
-	print( name + " Moving" )
+	var total_steering_force := Vector2.ZERO
+	total_steering_force += get_onduty_steering_force()
+	total_steering_force = total_steering_force.limit_length( 1.0 )
+	player.velocity = total_steering_force * player.speed
 	pass
 
 
 func perform_ai_decisions() -> void:
 	
 	pass
+
+
+func get_onduty_steering_force() -> Vector2:
+	return player.weight_on_duty_steering * player.position.direction_to( ball.position )

@@ -1,5 +1,6 @@
 class_name ActorsContainer extends Node2D
 
+const DURATION_WEIGHT_CACHE := 200
 const PLAYER_PREFAB := preload( "res://scenes/characters/Player.tscn" )
 
 @export var ball : Ball
@@ -12,6 +13,7 @@ const PLAYER_PREFAB := preload( "res://scenes/characters/Player.tscn" )
 
 var squad_left : Array[ Player ] = []
 var squad_right : Array[ Player ] = []
+var time_since_last_cache_refresh := Time.get_ticks_msec()
 
 func _ready() -> void:
 	squad_left = spawn_players( team_left, goal_left )
@@ -21,6 +23,12 @@ func _ready() -> void:
 	var player : Player = get_children().filter(func(p) : return p is Player)[4]
 	player.control_scheme = Player.ControlScheme.P1
 	player.set_control_texture()
+
+
+func _process( _delta: float ) -> void:
+	if Time.get_ticks_msec()  - time_since_last_cache_refresh > DURATION_WEIGHT_CACHE:
+		time_since_last_cache_refresh = Time.get_ticks_msec()
+		set_on_duty_weights()
 
 
 func spawn_players( country : String, goal : Goal ) -> Array[ Player ]:
@@ -50,4 +58,5 @@ func set_on_duty_weights() -> void:
 		cpu_players.sort_custom( func( p1 : Player, p2 : Player ):
 			return p1.spawn_position.distance_squared_to( ball.position ) < p2.spawn_position.distance_squared_to( ball.position ) 
 			)
-		
+		for i in range( cpu_players.size() ):
+			cpu_players[ i ].weight_on_duty_steering = 1 - ease( float(i) / 10.0, 0.1 )
