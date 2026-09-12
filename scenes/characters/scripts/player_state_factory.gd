@@ -14,6 +14,7 @@ func _init() -> void:
 		Player.State.PREPPING_SHOT : PlayerStatePreppingShot,
 		Player.State.SHOOTING : PlayerStateShooting,
 		Player.State.VOLLEY_KICK : PlayerStateVolleyKick,
+		Player.State.HURT : PlayerStateHurt,
 	}
 
 

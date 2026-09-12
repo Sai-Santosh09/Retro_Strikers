@@ -30,5 +30,5 @@ func handle_human_movement() -> void:
 		else:
 			transition_state(Player.State.HEADER)
 	
-	#if player.velocity != Vector2.ZERO and KeyUtil.is_action_just_pressed(player.control_scheme, KeyUtil.Action.SHOOT):
-		#state_transition_requested.emit( Player.State.TACKLING )
+	if player.velocity != Vector2.ZERO and KeyUtil.is_action_just_pressed(player.control_scheme, KeyUtil.Action.SHOOT):
+		state_transition_requested.emit( Player.State.TACKLING )
