@@ -316,6 +316,7 @@ height = 120.0
 
 [node name="Player" type="CharacterBody2D" unique_id=49003736]
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_gin2a")
 power = 150.0
 
@@ -383,6 +384,7 @@ shape = SubResource("RectangleShape2D_miirx")
 
 [node name="OpponentDetectionArea" type="Area2D" parent="." unique_id=238389030]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
