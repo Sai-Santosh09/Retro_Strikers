@@ -13,7 +13,7 @@ const WALK_ANIM_THRESHOLD := 0.6
 enum ControlScheme {CPU, P1, P2}
 enum Role {GOALIE, DEFENCE, MIDFIELD, OFFENSE}
 enum SkinColor {LIGHT, MEDIUM, DARK}
-enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEADER, VOLLEY_KICK, BICYCLE_KICK, CHEST_CONTROL, HURT}
+enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEADER, VOLLEY_KICK, BICYCLE_KICK, CHEST_CONTROL, HURT, DIVING }
 
 @export var ball : Ball
 @export var control_scheme : ControlScheme
@@ -24,7 +24,9 @@ enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEA
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var control_sprite: Sprite2D = $PlayerSprite/ControlSprite
+@onready var goalie_hands_collider: CollisionShape2D = %GoalieHandsCollider
 @onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var permanent_damage_emitter_area: Area2D = %PermanentDamageEmitterArea
 @onready var opponent_detection_area: Area2D = %OpponentDetectionArea
 @onready var teammate_detection_area: Area2D = $TeammateDetectionArea
 @onready var ball_detection_area: Area2D = %BallDetectionArea
@@ -50,7 +52,10 @@ func _ready() -> void:
 	setup_ai_behavior()
 	switch_states(State.MOVING)
 	set_shader_properties()
+	permanent_damage_emitter_area.monitoring = role == Role.GOALIE
+	goalie_hands_collider.disabled = role != Role.GOALIE
 	tackle_damage_emitter_area.body_entered.connect( on_tackle_player.bind() )
+	permanent_damage_emitter_area.body_entered.connect( on_tackle_player.bind() )
 	spawn_position = position
 
 
@@ -175,3 +180,7 @@ func is_facing_target_goal() -> bool:
 func on_tackle_player( player : Player ) -> void:
 	if player != self and player.country != country and player == ball.carrier:
 		player.get_hurt( position.direction_to( player.position ) )
+
+
+func can_carry_ball() -> bool:
+	return current_state != null and current_state.can_carry_ball()

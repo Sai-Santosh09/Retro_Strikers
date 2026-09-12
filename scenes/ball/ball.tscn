@@ -69,10 +69,9 @@ radius = 4.0
 
 [node name="Ball" type="AnimatableBody2D" unique_id=1031099531]
 collision_layer = 4
+collision_mask = 33
 sync_to_physics = false
 script = ExtResource("1_stoaj")
-air_connect_min_height = 10.0
-air_connect_max_height = 30.0
 friction_air = 35.0
 friction_ground = 250.0
 
@@ -104,3 +103,11 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=18668028]
 shape = SubResource("CircleShape2D_rp1mh")
+
+[node name="ScoringRayCast" type="RayCast2D" parent="." unique_id=1855480997]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+target_position = Vector2(80, 0)
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
