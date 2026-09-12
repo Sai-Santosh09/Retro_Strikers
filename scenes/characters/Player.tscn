@@ -310,6 +310,10 @@ height = 20.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_miirx"]
 size = Vector2(7, 7)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_miirx"]
+radius = 40.0
+height = 120.0
+
 [node name="Player" type="CharacterBody2D" unique_id=49003736]
 collision_layer = 2
 script = ExtResource("1_gin2a")
@@ -376,3 +380,14 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TackleDamageEmitterArea" unique_id=470201623]
 position = Vector2(13, -3)
 shape = SubResource("RectangleShape2D_miirx")
+
+[node name="OpponentDetectionArea" type="Area2D" parent="." unique_id=238389030]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentDetectionArea" unique_id=1594406115]
+position = Vector2(20, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_miirx")
