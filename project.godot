@@ -18,6 +18,8 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 KeyUtil="*uid://c2s18ritell0o"
 DataLoader="*uid://bpcxng27wsieg"
+GameEvents="*uid://dn7euldc80jad"
+GameManager="*uid://bg1bojrqkdmvd"
 
 [debug]
 

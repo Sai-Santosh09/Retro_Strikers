@@ -2,8 +2,11 @@ class_name BallStateFree extends BallState
 
 const MAX_CAPTURE_HEIGHT := 25
 
+var time_since_free := Time.get_ticks_msec()
+
 func _enter_tree() -> void:
 	player_detection.body_entered.connect(on_player_enter.bind())
+	time_since_free = Time.get_ticks_msec()
 
 
 func on_player_enter(body : Player) -> void:
@@ -14,6 +17,7 @@ func on_player_enter(body : Player) -> void:
 
 
 func _process(delta: float) -> void:
+	player_detection.monitoring = ( Time.get_ticks_msec() - time_since_free > state_data.lock_duration )
 	set_ball_animation_from_velocity()
 	var friction := ball.friction_air if ball.height > 0 else ball.friction_ground
 	ball.velocity = ball.velocity.move_toward(Vector2.ZERO, friction * delta)

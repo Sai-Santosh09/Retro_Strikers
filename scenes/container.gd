@@ -6,8 +6,6 @@ const PLAYER_PREFAB := preload( "res://scenes/characters/Player.tscn" )
 @export var ball : Ball
 @export var goal_left : Goal
 @export var goal_right : Goal
-@export var team_left : String
-@export var team_right : String
 
 @onready var spawns: Node2D = %Spawns
 
@@ -16,9 +14,11 @@ var squad_right : Array[ Player ] = []
 var time_since_last_cache_refresh := Time.get_ticks_msec()
 
 func _ready() -> void:
-	squad_left = spawn_players( team_left, goal_left )
+	squad_left = spawn_players( GameManager.countries[0], goal_left )
+	goal_left.initialize( GameManager.countries[0] )
 	spawns.scale.x = -1
-	squad_right = spawn_players( team_right, goal_right )
+	squad_right = spawn_players( GameManager.countries[1], goal_right )
+	goal_right.initialize( GameManager.countries[1] )
 	
 	var player : Player = get_children().filter(func(p) : return p is Player)[4]
 	player.control_scheme = Player.ControlScheme.P1
