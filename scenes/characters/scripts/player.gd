@@ -83,7 +83,7 @@ func initialize( context_position : Vector2, context_ball : Ball, context_goal :
 
 func setup_ai_behavior() -> void:
 	current_ai_behavior = ai_behavior_factory.get_ai_behavior( role )
-	current_ai_behavior.setup( self, ball, opponent_detection_area )
+	current_ai_behavior.setup( self, ball, opponent_detection_area, teammate_detection_area )
 	current_ai_behavior.name = "AI Behavior"
 	add_child( current_ai_behavior )
 	pass
@@ -97,7 +97,11 @@ func switch_states( state : State, state_data : PlayerStateData = PlayerStateDat
 	current_state.state_transition_requested.connect(switch_states.bind())
 	current_state.name = "PlayerStateMachine: " + str(state)
 	call_deferred("add_child", current_state)
-	 
+
+
+func get_pass_request( player : Player ) -> void:
+	if ball.carrier == self and current_state != null and current_state.can_pass():
+		switch_states( Player.State.PASSING, PlayerStateData.build().set_pass_target( player ) )
 
 
 func set_movement_animation() -> void:

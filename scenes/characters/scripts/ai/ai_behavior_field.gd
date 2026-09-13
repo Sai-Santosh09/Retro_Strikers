@@ -36,7 +36,7 @@ func perform_ai_decisions() -> void:
 			var shot_direction := player.position.direction_to( player.target_goal.get_random_target_position() )
 			var data = PlayerStateData.build().set_shot_power( player.power ).set_shot_direction( shot_direction )
 			player.switch_states( Player.State.SHOOTING, data )
-		elif has_opponents_nearby() and randf() < PASS_PROBABILITY:
+		elif randf() < PASS_PROBABILITY and has_opponents_nearby() and has_teammate_in_view():
 			player.switch_states( Player.State.PASSING )
 
 
@@ -69,3 +69,8 @@ func get_spawn_steering_force() -> Vector2:
 	var weight := get_bicircular_weight( player.position, player.spawn_position, 30, 0, 100, 1 )
 	var direction := player.position.direction_to( player.spawn_position )
 	return weight * direction
+
+
+func has_teammate_in_view() -> bool:
+	var players_in_view := teammate_detection_area.get_overlapping_bodies()
+	return players_in_view.find_custom( func( p : Player ) : return p != player and p.country == player.country ) > -1
