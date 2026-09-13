@@ -1,15 +1,16 @@
 class_name BallStateFree extends BallState
 
+const MAX_CAPTURE_HEIGHT := 25
 
 func _enter_tree() -> void:
 	player_detection.body_entered.connect(on_player_enter.bind())
 
 
 func on_player_enter(body : Player) -> void:
-	if body.can_carry_ball():
+	if body.can_carry_ball() and ball.height < MAX_CAPTURE_HEIGHT :
 		ball.carrier = body 
 		body.control_ball()
-		state_transition_requested.emit(Ball.State.CARRIED)
+		transition_state(Ball.State.CARRIED)
 
 
 func _process(delta: float) -> void:
