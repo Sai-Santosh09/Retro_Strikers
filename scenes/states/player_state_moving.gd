@@ -16,15 +16,17 @@ func handle_human_movement() -> void:
 	if player.velocity != Vector2.ZERO:
 		teammate_detection_area.rotation = player.velocity.angle()
 	
-	if player.has_ball():
-		if KeyUtil.is_action_just_pressed(player.control_scheme, KeyUtil.Action.PASS):
-			transition_state(Player.State.PASSING)
-		elif KeyUtil.is_action_just_pressed(player.control_scheme, KeyUtil.Action.SHOOT):
-			transition_state(Player.State.PREPPING_SHOT)
-	elif can_teammate_pass_ball() and KeyUtil.is_action_just_pressed( player.control_scheme, KeyUtil.Action.PASS ):
-		ball.carrier.get_pass_request( player )
+	if KeyUtil.is_action_just_pressed( player.control_scheme, KeyUtil.Action.PASS ):
+		if player.has_ball():
+			transition_state( Player.State.PASSING )
+		elif can_teammate_pass_ball():
+			ball.carrier.get_pass_request( player )
+		else:
+			player.swap_requested.emit( player )
 	elif KeyUtil.is_action_just_pressed( player.control_scheme, KeyUtil.Action.SHOOT ):
-		if ball.can_air_interact():
+		if player.has_ball():
+			transition_state( Player.State.PREPPING_SHOT )
+		elif ball.can_air_interact():
 			if player.velocity == Vector2.ZERO:
 				if player.is_facing_target_goal():
 					transition_state( Player.State.VOLLEY_KICK )

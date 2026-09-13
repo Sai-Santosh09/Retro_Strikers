@@ -45,8 +45,9 @@ func spawn_players( country : String, goal : Goal ) -> Array[ Player ]:
 
 
 func spawn_player( player_position : Vector2, goal : Goal, target_goal : Goal, player_data : PlayerResource, country : String ) -> Player:
-	var player := PLAYER_PREFAB.instantiate()
+	var player : Player = PLAYER_PREFAB.instantiate()
 	player.initialize( player_position, ball, goal , target_goal, player_data, country )
+	player.swap_requested.connect( on_player_swap_requested.bind() )
 	return player
 
 
@@ -60,3 +61,20 @@ func set_on_duty_weights() -> void:
 			)
 		for i in range( cpu_players.size() ):
 			cpu_players[ i ].weight_on_duty_steering = 1 - ease( float(i) / 10.0, 0.1 )
+
+
+func on_player_swap_requested( requester : Player ) -> void:
+	var squad := squad_left if requester.country == squad_left[0].country else squad_right
+	var cpu_players : Array[ Player ] = squad.filter(
+			func( p : Player ) : return p.control_scheme == Player.ControlScheme.CPU and p.role != Player.Role.GOALIE
+		)
+	cpu_players.sort_custom( func( p1 : Player, p2 : Player ):
+		return p1.position.distance_squared_to( ball.position ) < p2.position.distance_squared_to( ball.position ) 
+		)
+	var closest_cpu_to_ball : Player = cpu_players[0]
+	if closest_cpu_to_ball.position.distance_squared_to( ball.position ) < requester.position.distance_squared_to( ball.position ):
+		var player_control_scheme := requester.control_scheme
+		requester.control_scheme = Player.ControlScheme.CPU
+		requester.set_control_texture()
+		closest_cpu_to_ball.control_scheme = player_control_scheme
+		closest_cpu_to_ball.set_control_texture()
