@@ -99,6 +99,7 @@ func check_for_kickoff_readiness() -> void:
 
 
 func setup_control_schemes() -> void:
+	reset_control_schemes()
 	var p1_country := GameManager.player_setup[0]
 	if GameManager.is_coop():
 		var player_squad := squad_left if squad_left[0].country == p1_country else squad_right
@@ -117,3 +118,9 @@ func setup_control_schemes() -> void:
 func on_team_reset() -> void:
 	is_checking_for_kickoff_readiness = true
 	
+
+ 
+func reset_control_schemes() -> void:
+	for squad in [ squad_left, squad_right ]:
+		for player : Player in squad:
+			player.set_control_scheme( Player.ControlScheme.CPU ) 
