@@ -4,6 +4,7 @@ const BOUNCINESS := 0.8
 const DISTANCE_HIGH_PASS := 130
 const DURATION_TUMBLE_LOCK := 200
 const DURATION_PASS_LOCK := 500
+const KICKOFF_PASS_DISTANCE := 30.0
 const TUMBLE_HEIGHT_VELOCITY := 3.0
 
 enum State {CARRIED, FREE, SHOT}
@@ -29,6 +30,7 @@ func _ready() -> void:
 	switch_state(State.FREE)
 	spawn_position = position
 	GameEvents.team_reset.connect( on_team_reset.bind() )
+	GameEvents.kickoff_started.connect( on_kickoff_started.bind() )
 
 
 func _process(_delta: float) -> void:
@@ -51,7 +53,7 @@ func shoot( shot_velocity : Vector2 ) -> void:
 	switch_state(Ball.State.SHOT)
 
 
-func pass_to( destination : Vector2 ) -> void:
+func pass_to( destination : Vector2, lock_duration : int = DURATION_PASS_LOCK ) -> void:
 	var direction := position.direction_to( destination )
 	var distance := position.distance_to( destination )
 	var intensity := sqrt( 2 * distance * friction_ground )
@@ -59,7 +61,7 @@ func pass_to( destination : Vector2 ) -> void:
 	if distance > DISTANCE_HIGH_PASS:
 		height_velocity = BallState.GRAVITY * distance / ( 1.8 * intensity )
 	carrier = null
-	switch_state(Ball.State.FREE, BallStateData.build().set_lock_duration( DURATION_PASS_LOCK ) )
+	switch_state(Ball.State.FREE, BallStateData.build().set_lock_duration( lock_duration ) )
 
 
 func tumble( tumble_velocity : Vector2 ) -> void:
@@ -91,3 +93,7 @@ func on_team_reset() -> void:
 	position = spawn_position
 	velocity = Vector2.ZERO
 	switch_state( State.FREE )
+
+
+func on_kickoff_started() -> void:
+	pass_to( spawn_position + Vector2.DOWN * KICKOFF_PASS_DISTANCE, 0 )
