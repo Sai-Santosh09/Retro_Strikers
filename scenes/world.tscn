@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://s6e6h1xg4kpv" path="res://assets/art/backgrounds/top-wall.png" id="6_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://cf2onb6ih0bgl" path="res://assets/art/backgrounds/bottom-wall.png" id="7_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://cv3g6fkscxtmt" path="res://assets/art/backgrounds/side-wall.png" id="8_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://cg5nuiv5w5ams" path="res://scenes/ui/ui.tscn" id="11_e3hyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r4gi"]
 size = Vector2(802, 7)
@@ -142,3 +143,5 @@ polygon = PackedVector2Array(14, -1, 30, -1, 13, 116, 0, 116)
 
 [node name="Ball" parent="Container" unique_id=1031099531 instance=ExtResource("5_71j4m")]
 position = Vector2(425, 180)
+
+[node name="Ui" parent="." unique_id=137265897 instance=ExtResource("11_e3hyu")]

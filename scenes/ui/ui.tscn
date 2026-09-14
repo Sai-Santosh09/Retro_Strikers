@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cg5nuiv5w5ams"]
+
+[ext_resource type="Script" uid="uid://cygpins2t5anr" path="res://scenes/ui/ui.gd" id="1_f5cxw"]
+[ext_resource type="Texture2D" uid="uid://ldsjfqt6kwsb" path="res://assets/art/ui/flags/flag-placeholder.png" id="1_u7n8c"]
+
+[node name="Ui" type="CanvasLayer" unique_id=137265897]
+script = ExtResource("1_f5cxw")
+
+[node name="UiContainer" type="Control" parent="." unique_id=157724813]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UiContainer" unique_id=557825574]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -14.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UiContainer/ColorRect" unique_id=437242873]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="UiContainer/ColorRect/HBoxContainer" unique_id=232313905]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.80784315, 0.80784315, 0.80784315, 1)
+text = "MESSI"
+
+[node name="HomeFlagTexture" type="TextureRect" parent="UiContainer/ColorRect/HBoxContainer" unique_id=1454337836]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+texture = ExtResource("1_u7n8c")
+stretch_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UiContainer/ColorRect/HBoxContainer" unique_id=1651765589]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+text = "2 - 3"
+horizontal_alignment = 1
+
+[node name="AwayFlagTexture" type="TextureRect" parent="UiContainer/ColorRect/HBoxContainer" unique_id=1780326062]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+texture = ExtResource("1_u7n8c")
+stretch_mode = 2
+
+[node name="TimeLabel" type="Label" parent="UiContainer/ColorRect/HBoxContainer" unique_id=1472588349]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.80784315, 0.80784315, 0.80784315, 1)
+text = "02 : 45"
+horizontal_alignment = 2

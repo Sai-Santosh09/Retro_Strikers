@@ -16,7 +16,6 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
-KeyUtil="*uid://c2s18ritell0o"
 DataLoader="*uid://bpcxng27wsieg"
 GameEvents="*uid://dn7euldc80jad"
 GameManager="*uid://bg1bojrqkdmvd"
@@ -37,6 +36,11 @@ window/stretch/scale_mode="integer"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://b1d3hfl7e2kwg"
+theme/custom_font="uid://rt8q6nr2ys3q"
 
 [input]
 
