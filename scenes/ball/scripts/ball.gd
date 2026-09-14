@@ -20,12 +20,15 @@ var carrier : Player = null
 var current_state : BallState = null
 var height := 0.0
 var height_velocity := 0.0
+var spawn_position := Vector2.ZERO
 var state_factory := BallStateFactory.new()
 var velocity := Vector2.ZERO
 
 
 func _ready() -> void:
 	switch_state(State.FREE)
+	spawn_position = position
+	GameEvents.team_reset.connect( on_team_reset.bind() )
 
 
 func _process(_delta: float) -> void:
@@ -82,3 +85,9 @@ func is_heading_for_scoring_area( scoring_area : Area2D ) -> bool:
 	if not scoring_ray_cast.is_colliding():
 		return false
 	return scoring_ray_cast.get_collider() == scoring_area
+
+
+func on_team_reset() -> void:
+	position = spawn_position
+	velocity = Vector2.ZERO
+	switch_state( State.FREE )

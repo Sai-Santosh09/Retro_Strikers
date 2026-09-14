@@ -15,7 +15,7 @@ const WALK_ANIM_THRESHOLD := 0.6
 enum ControlScheme {CPU, P1, P2}
 enum Role {GOALIE, DEFENCE, MIDFIELD, OFFENSE}
 enum SkinColor {LIGHT, MEDIUM, DARK}
-enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEADER, VOLLEY_KICK, BICYCLE_KICK, CHEST_CONTROL, HURT, DIVING, CELEBRATING, MOURNING }
+enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEADER, VOLLEY_KICK, BICYCLE_KICK, CHEST_CONTROL, HURT, DIVING, CELEBRATING, MOURNING, RESETING }
 
 @export var ball : Ball
 @export var control_scheme : ControlScheme
@@ -42,6 +42,7 @@ var current_state : PlayerState = null
 var fullname := ""
 var height := 0.0
 var height_velocity := 0.0
+var kickoff_position := Vector2.ZERO
 var role := Player.Role.MIDFIELD
 var skin_color := Player.SkinColor.MEDIUM
 var spawn_position := Vector2.ZERO
@@ -69,10 +70,11 @@ func _process( delta : float ) -> void:
 	move_and_slide()
 
 
-func initialize( context_position : Vector2, context_ball : Ball, context_goal : Goal, context_target_goal : Goal, context_player_data : PlayerResource, context_country : String ) -> void:
+func initialize( context_position : Vector2, context_kickoff_position : Vector2, context_ball : Ball, context_goal : Goal, context_target_goal : Goal, context_player_data : PlayerResource, context_country : String ) -> void:
 	position = context_position
 	ball = context_ball
 	country = context_country
+	kickoff_position = context_kickoff_position
 	own_goal = context_goal
 	target_goal = context_target_goal
 	speed = context_player_data.speed
@@ -131,6 +133,11 @@ func set_Left_or_Right() -> void:
 		Left_or_Right = Vector2.RIGHT
 	elif velocity.x < 0:
 		Left_or_Right = Vector2.LEFT
+
+
+func face_towards_target_goal() -> void:
+	if not is_facing_target_goal():
+		Left_or_Right = Left_or_Right * -1
 
 
 func flip_sprite() -> void:
