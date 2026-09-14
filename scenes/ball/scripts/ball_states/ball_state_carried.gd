@@ -8,7 +8,7 @@ const SWAY_AMOUNT := 3.5
 
 func _enter_tree() -> void:
 	assert( carrier != null )
-
+	GameEvents.ball_possessed.emit( carrier.fullname )
 
 
 func _process(delta: float) -> void:
@@ -31,3 +31,7 @@ func _process(delta: float) -> void:
 		animation_player.play("idle")
 		animation_player.speed_scale = 1.0
 	process_gravity(delta)
+
+
+func _exit_tree() -> void:
+	GameEvents.ball_released.emit()

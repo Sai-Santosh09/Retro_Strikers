@@ -1,6 +1,6 @@
 extends Node
 
-const DURATION_GAME := 2 * 60 * 1000
+const DURATION_GAME := 2 * 60 
 
 enum State { IN_PLAY, SCORED, RESET, KICKOFF, OVERTIME, GAMEOVER }
 
