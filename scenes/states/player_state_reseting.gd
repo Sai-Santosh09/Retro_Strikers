@@ -13,3 +13,8 @@ func _process( _delta: float ) -> void:
 			player.velocity = direction * player.speed
 		player.set_movement_animation()
 		player.set_Left_or_Right()
+
+
+func is_ready_for_kickoff() -> bool:
+	return has_arrived
+	

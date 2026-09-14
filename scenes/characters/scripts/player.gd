@@ -159,6 +159,10 @@ func has_ball() -> bool:
 	return ball.carrier == self
 
 
+func is_ready_for_kickoff() -> bool:
+	return current_state != null and current_state.is_ready_for_kickoff()
+
+
 func set_control_texture() -> void:
 	control_sprite.texture = CONTROL_SCHEME_MAP[control_scheme]
 

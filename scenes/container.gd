@@ -10,6 +10,7 @@ const PLAYER_PREFAB := preload( "res://scenes/characters/Player.tscn" )
 @onready var kick_offs: Node2D = %KickOffs
 @onready var spawns: Node2D = %Spawns
 
+var is_checking_for_kickoff_readiness := false
 var squad_left : Array[ Player ] = []
 var squad_right : Array[ Player ] = []
 var time_since_last_cache_refresh := Time.get_ticks_msec()
@@ -25,12 +26,15 @@ func _ready() -> void:
 	var player : Player = get_children().filter(func(p) : return p is Player)[4]
 	player.control_scheme = Player.ControlScheme.P1
 	player.set_control_texture()
+	GameEvents.team_reset.connect( on_team_reset.bind() )
 
 
 func _process( _delta: float ) -> void:
 	if Time.get_ticks_msec()  - time_since_last_cache_refresh > DURATION_WEIGHT_CACHE:
 		time_since_last_cache_refresh = Time.get_ticks_msec()
 		set_on_duty_weights()
+	if is_checking_for_kickoff_readiness:
+		check_for_kickoff_readiness()
 
 
 func spawn_players( country : String, goal : Goal ) -> Array[ Player ]:
@@ -83,3 +87,17 @@ func on_player_swap_requested( requester : Player ) -> void:
 		requester.set_control_texture()
 		closest_cpu_to_ball.control_scheme = player_control_scheme
 		closest_cpu_to_ball.set_control_texture()
+
+
+func check_for_kickoff_readiness() -> void:
+	for squad in [ squad_left, squad_right ]:
+		for player : Player in squad:
+			if not player.is_ready_for_kickoff():
+				return
+	is_checking_for_kickoff_readiness = false
+	GameEvents.kickoff_ready.emit()
+
+
+func on_team_reset() -> void:
+	is_checking_for_kickoff_readiness = true
+	
