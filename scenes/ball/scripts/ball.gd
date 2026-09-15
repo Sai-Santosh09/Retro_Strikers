@@ -15,6 +15,7 @@ enum State {CARRIED, FREE, SHOT}
 @onready var player_detection: Area2D = %PlayerDetection
 @onready var ball_sprite: Sprite2D = $BallSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var player_proximity_area: Area2D = %PlayerProximityArea
 @onready var scoring_ray_cast: RayCast2D = %ScoringRayCast
 @onready var shot_particles: GPUParticles2D = %ShotParticles
 
@@ -88,6 +89,11 @@ func is_heading_for_scoring_area( scoring_area : Area2D ) -> bool:
 	if not scoring_ray_cast.is_colliding():
 		return false
 	return scoring_ray_cast.get_collider() == scoring_area
+
+
+func get_proximity_teammates_count( country : String ) -> int:
+	var players := player_proximity_area.get_overlapping_bodies()
+	return players.filter( func( p : Player ): return p.country == country ).size()
 
 
 func on_team_reset() -> void:
