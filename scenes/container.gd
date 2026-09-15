@@ -2,6 +2,7 @@ class_name ActorsContainer extends Node2D
 
 const DURATION_WEIGHT_CACHE := 200
 const PLAYER_PREFAB := preload( "res://scenes/characters/Player.tscn" )
+const SPARK_PREFAB := preload( "res://scenes/spark/spark.tscn" )
 
 @export var ball : Ball
 @export var goal_left : Goal
@@ -18,6 +19,7 @@ var time_since_last_cache_refresh := Time.get_ticks_msec()
 
 func _init() -> void:
 	GameEvents.team_reset.connect( on_team_reset.bind() )
+	GameEvents.impact_received.connect( on_impact_received.bind() )
 
 
 func _ready() -> void:
@@ -117,7 +119,12 @@ func setup_control_schemes() -> void:
 
 func on_team_reset() -> void:
 	is_checking_for_kickoff_readiness = true
-	
+
+
+func on_impact_received( impact_position : Vector2, _is_high_impact : bool ) -> void:
+	var spark := SPARK_PREFAB.instantiate()
+	spark.position = impact_position
+	add_child( spark )
 
  
 func reset_control_schemes() -> void:

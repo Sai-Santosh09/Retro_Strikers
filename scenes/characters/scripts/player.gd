@@ -27,9 +27,11 @@ enum State {MOVING, TACKLING, RECOVERING, PREPPING_SHOT, SHOOTING , PASSING, HEA
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var control_sprite: Sprite2D = $PlayerSprite/ControlSprite
 @onready var goalie_hands_collider: CollisionShape2D = %GoalieHandsCollider
+@onready var opponent_detection_area: Area2D = %OpponentDetectionArea
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var permanent_damage_emitter_area: Area2D = %PermanentDamageEmitterArea
-@onready var opponent_detection_area: Area2D = %OpponentDetectionArea
+@onready var root_particles: Node2D = %RootParticles
+@onready var run_particles: GPUParticles2D = %RunParticles
 @onready var teammate_detection_area: Area2D = $TeammateDetectionArea
 @onready var ball_detection_area: Area2D = %BallDetectionArea
 @onready var tackle_damage_emitter_area: Area2D = %TackleDamageEmitterArea
@@ -147,10 +149,12 @@ func flip_sprite() -> void:
 		player_sprite.flip_h = false
 		tackle_damage_emitter_area.scale.x = 1
 		opponent_detection_area.scale.x = 1
+		root_particles.scale.x = 1
 	elif Left_or_Right == Vector2.LEFT:
 		player_sprite.flip_h = true
 		tackle_damage_emitter_area.scale.x = -1
 		opponent_detection_area.scale.x = -1
+		root_particles.scale.x = -1
 
 
 func set_control_scheme( scheme : ControlScheme ) -> void:
@@ -160,6 +164,7 @@ func set_control_scheme( scheme : ControlScheme ) -> void:
 
 func set_sprite_visibility() -> void:
 	control_sprite.visible = has_ball() or not control_scheme == ControlScheme.CPU
+	run_particles.emitting = velocity.length() == speed
 
 
 func has_ball() -> bool:
