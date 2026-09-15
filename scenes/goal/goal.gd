@@ -21,6 +21,7 @@ func on_ball_enter_back_net(ball : Ball) -> void:
 
 
 func on_ball_enter_scoring_area( _ball : Ball ) -> void:
+	SoundPlayer.play( SoundPlayer.Sound.WHISTLE )
 	GameEvents.team_scored.emit( country )
 
 

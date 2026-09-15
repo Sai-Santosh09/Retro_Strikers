@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 DataLoader="*uid://bpcxng27wsieg"
 GameEvents="*uid://dn7euldc80jad"
 GameManager="*uid://bg1bojrqkdmvd"
+SoundPlayer="*uid://b7ebfij41y8yn"
 
 [debug]
 
