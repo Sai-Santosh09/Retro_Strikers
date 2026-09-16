@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://7lxjjtqtxktt"]
 
+[ext_resource type="Script" uid="uid://d8apotpspogq" path="res://scenes/screens/main_menu/main_menu.gd" id="1_ai35v"]
 [ext_resource type="Texture2D" uid="uid://bvwsuvwwwhn3h" path="res://assets/art/ui/mainmenu/menu-background.png" id="1_du1io"]
 [ext_resource type="Texture2D" uid="uid://cneffaccrrfqa" path="res://assets/art/ui/mainmenu/title1.png" id="2_ai35v"]
 [ext_resource type="Texture2D" uid="uid://cgfpuahe3y4w5" path="res://assets/art/ui/mainmenu/menu-mask.png" id="3_nawi7"]
@@ -184,6 +185,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_set_active"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75uti"]
 _data = {
@@ -237,6 +252,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ai35v")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1045839172]
 layout_mode = 0
@@ -294,6 +310,7 @@ grow_vertical = 0
 texture = ExtResource("5_u4ap7")
 
 [node name="SinglePlayerTexture" type="TextureRect" parent="Background" unique_id=466298164]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 100.0
@@ -303,6 +320,7 @@ texture = ExtResource("6_1jwuw")
 stretch_mode = 2
 
 [node name="TwoPlayersTexture" type="TextureRect" parent="Background" unique_id=1521915883]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 125.0
@@ -312,13 +330,14 @@ texture = ExtResource("7_41loo")
 stretch_mode = 2
 
 [node name="SelectionIcon" type="TextureRect" parent="Background" unique_id=720811971]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
 offset_top = 100.0
 offset_right = 30.0
 offset_bottom = 120.0
 scale = Vector2(1.0446894, 1.0446894)
-pivot_offset = Vector2(10, 10)
+pivot_offset = Vector2(10.5, 10.5)
 texture = ExtResource("8_iuc4d")
 stretch_mode = 2
 
