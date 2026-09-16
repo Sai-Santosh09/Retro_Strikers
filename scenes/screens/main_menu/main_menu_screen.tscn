@@ -245,17 +245,10 @@ _data = {
 &"rotate": SubResource("Animation_sig3g")
 }
 
-[node name="MainMenuScreen" type="Control" unique_id=106528797]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenuScreen" type="Node" unique_id=426425055]
 script = ExtResource("1_ai35v")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1045839172]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_du1io")

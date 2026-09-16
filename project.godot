@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Soccer"
-run/main_scene="uid://dce2m2fxxkvhw"
+run/main_scene="uid://fn0y1i6mnqao"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
