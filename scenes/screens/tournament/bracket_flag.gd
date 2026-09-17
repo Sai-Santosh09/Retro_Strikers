@@ -2,7 +2,7 @@ class_name BracketFlag extends TextureRect
 
 
 @onready var score_label: Label = %ScoreLabel
-@onready var border: TextureRect = %TextureRect
+@onready var border: TextureRect = %Border
 
 
 func set_as_current_team() -> void:

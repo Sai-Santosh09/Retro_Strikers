@@ -23,12 +23,12 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	squad_left = spawn_players( GameManager.countries[0], goal_left )
-	goal_left.initialize( GameManager.countries[0] )
+	squad_left = spawn_players( GameManager.current_match.country_left, goal_left )
+	goal_left.initialize( GameManager.current_match.country_left )
 	spawns.scale.x = -1
 	kick_offs.scale.x = -1
-	squad_right = spawn_players( GameManager.countries[1], goal_right )
-	goal_right.initialize( GameManager.countries[1] )
+	squad_right = spawn_players( GameManager.current_match.country_right, goal_right )
+	goal_right.initialize( GameManager.current_match.country_right )
 	setup_control_schemes()
 
 
