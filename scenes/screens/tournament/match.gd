@@ -32,3 +32,10 @@ func increase_score( country_scored_on : String ) -> void:
 func update_match_info() -> void:
 	winner = country_left if goals_left > goals_right else country_right
 	final_score = "%d - %d" % [ max( goals_left, goals_right ), min( goals_left, goals_right ) ]
+
+
+func resolve() -> void:
+	while is_tied():
+		goals_left = randi_range( 0, 5 )
+		goals_right = randi_range( 0, 5 )
+	update_match_info()
