@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://b222nex4ioad8"]
+
+[ext_resource type="Script" uid="uid://dlioogeoc6xx" path="res://scenes/screens/tournament/tournament_screen.gd" id="1_hvkgv"]
+[ext_resource type="Texture2D" uid="uid://dxp5u0rdnwe7a" path="res://assets/art/ui/teamselection/tournament-screen.png" id="2_11qsq"]
+[ext_resource type="PackedScene" uid="uid://4lfkrp8bhei1" path="res://scenes/screens/tournament/bracket_flag.tscn" id="3_11qsq"]
+[ext_resource type="Texture2D" uid="uid://dmsx61jv8b24j" path="res://assets/art/ui/flags/flag-vseparator.png" id="4_3kbg6"]
+[ext_resource type="Texture2D" uid="uid://m6gtet8l3mi8" path="res://assets/art/ui/flags/flag-hseparator.png" id="5_ru4pj"]
+[ext_resource type="Texture2D" uid="uid://pburhjn465ty" path="res://assets/art/ui/teamselection/worldcup-label.png" id="6_702pu"]
+[ext_resource type="Texture2D" uid="uid://chrsbaiucden2" path="res://assets/art/ui/teamselection/quarters-label.png" id="7_v5v2t"]
+
+[node name="TournamentScreen" type="Node" unique_id=1048222135]
+script = ExtResource("1_hvkgv")
+
+[node name="Background" type="TextureRect" parent="." unique_id=544777722]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_11qsq")
+
+[node name="BracketsContainer" type="HBoxContainer" parent="Background" unique_id=390454771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="QFLeftContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1093526207]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/QFLeftContainer" unique_id=2125436634 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink" type="TextureRect" parent="Background/BracketsContainer/QFLeftContainer" unique_id=673485559]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag2" parent="Background/BracketsContainer/QFLeftContainer" unique_id=711376160 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VPadding" type="Control" parent="Background/BracketsContainer/QFLeftContainer" unique_id=1893722328]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="BracketFlag3" parent="Background/BracketsContainer/QFLeftContainer" unique_id=27858540 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink2" type="TextureRect" parent="Background/BracketsContainer/QFLeftContainer" unique_id=234557936]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag4" parent="Background/BracketsContainer/QFLeftContainer" unique_id=1344625777 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="HPadding" type="Control" parent="Background/BracketsContainer" unique_id=1252729763]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="SFLeftContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1402552261]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/SFLeftContainer" unique_id=2042863011 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink" type="TextureRect" parent="Background/BracketsContainer/SFLeftContainer" unique_id=468273474]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag2" parent="Background/BracketsContainer/SFLeftContainer" unique_id=541274833 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="HPadding2" type="Control" parent="Background/BracketsContainer" unique_id=294611704]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="FLeftContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1864293025]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/FLeftContainer" unique_id=297217778 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="FinalLink" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=2027746892]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/BracketsContainer/FinalLink" unique_id=1345166302]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+texture = ExtResource("5_ru4pj")
+
+[node name="FRightContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1890422458]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/FRightContainer" unique_id=872119878 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="HPadding3" type="Control" parent="Background/BracketsContainer" unique_id=110642102]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="SFRightContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1470597312]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/SFRightContainer" unique_id=817456624 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink" type="TextureRect" parent="Background/BracketsContainer/SFRightContainer" unique_id=824547689]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag2" parent="Background/BracketsContainer/SFRightContainer" unique_id=50914627 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="HPadding4" type="Control" parent="Background/BracketsContainer" unique_id=202857144]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="QFRightContainer" type="VBoxContainer" parent="Background/BracketsContainer" unique_id=1213442836]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BracketFlag" parent="Background/BracketsContainer/QFRightContainer" unique_id=1374479107 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink" type="TextureRect" parent="Background/BracketsContainer/QFRightContainer" unique_id=407966835]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag2" parent="Background/BracketsContainer/QFRightContainer" unique_id=38989547 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VPadding" type="Control" parent="Background/BracketsContainer/QFRightContainer" unique_id=1767467488]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="BracketFlag3" parent="Background/BracketsContainer/QFRightContainer" unique_id=1216263253 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="VLink2" type="TextureRect" parent="Background/BracketsContainer/QFRightContainer" unique_id=1330231757]
+layout_mode = 2
+texture = ExtResource("4_3kbg6")
+
+[node name="BracketFlag4" parent="Background/BracketsContainer/QFRightContainer" unique_id=1688778715 instance=ExtResource("3_11qsq")]
+layout_mode = 2
+
+[node name="PressKeyLabel" type="Label" parent="Background" unique_id=2146066879]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.72156864, 0.83137256, 1)
+theme_override_constants/outline_size = 5
+text = "PRESS ANY KEY TO CONTINUE..."
+horizontal_alignment = 1
+
+[node name="WorldCupTexture" type="TextureRect" parent="Background" unique_id=777944355]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 4.0
+offset_right = 90.0
+offset_bottom = 33.0
+grow_horizontal = 2
+texture = ExtResource("6_702pu")
+
+[node name="StageTexture" type="TextureRect" parent="Background" unique_id=503091773]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.0
+offset_top = 35.0
+offset_right = 69.0
+offset_bottom = 63.0
+grow_horizontal = 2
+texture = ExtResource("7_v5v2t")
+
+[node name="WinnerContainer" type="Control" parent="Background" unique_id=1031593397]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BracketFlag" parent="Background/WinnerContainer" unique_id=1077179630 instance=ExtResource("3_11qsq")]
+custom_minimum_size = Vector2(66, 42)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -57.0
+offset_right = 33.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
