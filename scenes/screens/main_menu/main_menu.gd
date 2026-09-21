@@ -15,6 +15,7 @@ var is_active := false
 
 func _ready() -> void:
 	refresh_ui()
+	TimeHelper.reset()
 
 
 func _process( _delta: float ) -> void:

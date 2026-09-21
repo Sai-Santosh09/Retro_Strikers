@@ -17,7 +17,6 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	time_left = DURATION_GAME
 	GameEvents.impact_received.connect( on_impact_received.bind() )
 
 
@@ -27,6 +26,9 @@ func _process( _delta: float ) -> void:
 
 
 func start_game() -> void:
+	TimeHelper.reset()
+	time_left = DURATION_GAME
+	TimeHelper.is_running = true
 	switch_state( State.RESET )
 
 
