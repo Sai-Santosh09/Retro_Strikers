@@ -21,3 +21,8 @@ Retro Strikers is a simple retro-style football game made in the Godot. It focus
 **Player 2**
 - Pass / Switch / Unselect: `[`
 - Shoot / Tackle / Power Move / Interaction / Select: `]`
+
+## Note
+- To start the game click on ` or [
+- You can change your player by click on ` if P1 or [ if P2 to the nearest player to the ball.
+- You can click on 1 if P1 else P2 to make the CPU pass the ball towards you.
